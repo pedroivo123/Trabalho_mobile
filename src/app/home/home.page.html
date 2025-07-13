@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Início
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Início</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container" style="display: flex;">
+    <ion-card color="success" style="width: 50%;" routerLink="/cadastro-livro">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="add-outline"></ion-icon>
+          Novo Livro
+        </ion-card-title>
+        <ion-card-subtitle>Cadastro de livros</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>Adicione um novo livro aqui</ion-card-content>
+    </ion-card>
+
+        <ion-card color="tertiary" style="width: 50%;" routerLink="/lista-livro">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="eye-outline"></ion-icon>
+          Lista de Livros
+        </ion-card-title>
+        <ion-card-subtitle>Lista com todos os dados dos serviços</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>Veja todos os seus serviços cadastrados</ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
