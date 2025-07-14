@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { NavController } from '@ionic/angular';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro-livro',
@@ -8,25 +7,39 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./cadastro-livro.page.scss'],
   standalone: false
 })
-
-export class CadastroLivroPage {
-  livro = { 
+export class CadastroLivroPage implements OnInit {
+  livro: any = {
     nome: '',
     autor: '',
     isbn: '',
     anoPublicacao: null,
     genero: '',
     preco: null
-}
+  };
+  editando = false;
+  editIndex: number | null = null;
 
-  constructor(private formBuilder: FormBuilder, private navCtrl: NavController) {}
+  constructor(private route: ActivatedRoute, private router: Router) {}
 
-    salvarLivro() {
-    this.navCtrl.navigateForward('/lista-livro', {
-      state: {
-      livro: this.livro
-      }
-    });
+  ngOnInit() {
+    const state = history.state;
+    if (state && state.livro && state.index !== undefined) {
+      this.livro = state.livro;
+      this.editIndex = state.index;
+      this.editando = true;
+    }
   }
 
+  salvarLivro() {
+    const livros = JSON.parse(localStorage.getItem('livros') || '[]');
+
+    if (this.editando && this.editIndex !== null) {
+      livros[this.editIndex] = this.livro;
+    } else {
+      livros.push(this.livro);
+    }
+
+    localStorage.setItem('livros', JSON.stringify(livros));
+    this.router.navigateByUrl('/lista-livro');
+  }
 }

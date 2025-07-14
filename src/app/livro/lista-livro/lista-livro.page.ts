@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,18 +7,32 @@ import { Router } from '@angular/router';
   styleUrls: ['./lista-livro.page.scss'],
   standalone: false
 })
-export class ListaLivroPage implements OnInit {
-  livro: any;
+export class ListaLivroPage {
+  livros: any[] = [];
 
-  constructor(private router: Router) { 
-    
-    const state = this.router.getCurrentNavigation()?.extras?.state;
-    if (state) {
-      this.livro = state['livro'];
-  }
-}
+  constructor(private router: Router) {}
 
-  ngOnInit() {
+  ionViewWillEnter() {
+    this.carregarLivros();
   }
 
+  carregarLivros() {
+    const data = localStorage.getItem('livros');
+    this.livros = data ? JSON.parse(data) : [];
+  }
+
+  excluirLivro(index: number) {
+    this.livros.splice(index, 1);
+    localStorage.setItem('livros', JSON.stringify(this.livros));
+  }
+
+  editarLivro(index: number) {
+    const livro = this.livros[index];
+    this.router.navigateByUrl('/cadastro-livro', {
+      state: {
+        livro,
+        index
+      }
+    });
+  }
 }
