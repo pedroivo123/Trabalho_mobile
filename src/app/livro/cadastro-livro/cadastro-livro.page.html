@@ -14,35 +14,35 @@
 <ion-content class="ion-padding">
   <ion-item>
     <ion-label position="floating">Nome</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input type="text" [(ngModel)]="livro.nome"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label position="floating">Autor</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input type="text" [(ngModel)]="livro.autor"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label position="floating">ISBN</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input type="text" [(ngModel)]="livro.isbn"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label position="floating">Ano de Publicação</ion-label>
-    <ion-input type="number"></ion-input>
+    <ion-input type="number" [(ngModel)]="livro.anoPublicacao"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label position="floating">Gênero</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input type="text" [(ngModel)]="livro.genero"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label position="floating">Preço</ion-label>
-    <ion-input type="number"></ion-input>
+    <ion-input type="number" [(ngModel)]="livro.preco"></ion-input>
   </ion-item>
 
-  <ion-button expand="block" shape="round" color="primary" class="ion-margin-top">
+  <ion-button expand="block" shape="round" color="primary" class="ion-margin-top" (click)="salvarLivro()"> 
     Confirmar
   </ion-button>
 </ion-content>

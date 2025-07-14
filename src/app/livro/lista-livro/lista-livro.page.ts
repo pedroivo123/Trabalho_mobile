@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-livro',
@@ -7,8 +8,15 @@ import { Component, OnInit } from '@angular/core';
   standalone: false
 })
 export class ListaLivroPage implements OnInit {
+  livro: any;
 
-  constructor() { }
+  constructor(private router: Router) { 
+    
+    const state = this.router.getCurrentNavigation()?.extras?.state;
+    if (state) {
+      this.livro = state['livro'];
+  }
+}
 
   ngOnInit() {
   }
